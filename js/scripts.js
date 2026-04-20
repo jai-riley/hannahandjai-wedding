@@ -200,7 +200,7 @@ $(document).ready(function () {
         var data = $.param(formData);
 
         // TODO: replace this URL with your own Google Apps Script endpoint
-        $.post('https://script.google.com/macros/s/REPLACE_WITH_YOUR_APPS_SCRIPT_URL/exec', data)
+        $.post('https://script.google.com/macros/s/AKfycbweg9YMa8wnm_429zNFshWEAFxuW8kpYdx3VNvYQyvIGOocsi878W0IYoXfPCFEJedYMQ/exec', data)
             .done(function (data) {
                 if (data.result === 'error') {
                     $('#alert-wrapper').html(alert_markup('danger', data.message));
