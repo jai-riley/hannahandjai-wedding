@@ -1035,9 +1035,29 @@ body.party-unlocked .timeline-card[data-party="true"] {
 Camp Theme — Pack Your Bags
 ========================================================================== */
 #pack-your-bags {
+  // reduce gap between title row and content columns
+  .row:first-child {
+    margin-bottom: 0;
+
+    .col-md-12 {
+      padding-bottom: 0;
+    }
+
+    .header {
+      padding-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .row + .row {
+    margin-top: 24px;
+  }
+
   .row > [class*="col-"] {
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 0;
   }
 
   h5 {
