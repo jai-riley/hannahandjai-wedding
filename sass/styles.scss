@@ -1177,25 +1177,36 @@ Camp Theme — RSVP attendance options
 /* Dietary checkboxes */
 .dietary-group {
   height: auto !important;
-  display: flex !important;
-  align-items: flex-start !important;
-  padding: 12px 16px !important;
-  gap: 12px;
+  padding: 12px 16px 14px !important;
 
-  .dietary-icon {
-    position: static;
-    margin-top: 2px;
-    flex-shrink: 0;
+  // suppress the absolute-positioned vertical keyline drawn by i:after
+  i::after {
+    display: none !important;
   }
 
   .dietary-checkboxes {
-    flex: 1;
+    width: 100%;
+  }
+
+  .dietary-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+
+    .dietary-icon {
+      color: $accent-color;
+      font-size: 14px;
+      position: static;
+      flex-shrink: 0;
+    }
   }
 
   .dietary-label {
     color: $form-placeholder;
     font-size: 14px;
-    margin: 0 0 8px;
+    margin: 0;
+    line-height: 1;
   }
 
   .dietary-options {
