@@ -3,9 +3,9 @@
 
 // Fonts
 
-$sans-serif: 'Open Sans', sans-serif;
-$serif: Merriweather, Georgia, 'Times New Roman', serif;
-$accent-font: 'Nunito', sans-serif;
+$sans-serif: 'Lato', sans-serif;
+$serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+$accent-font: 'Amatic SC', cursive;
 
 // Weights
 
@@ -57,11 +57,12 @@ h2 {
 
 h3 {
   color: $h3-color;
-  font-size: $font-size-h4;
-  font-weight: $bold;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  line-height: $base-line-height;
+  font-family: $accent-font;
+  font-size: 42px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 2px;
+  line-height: 1.2;
 }
 
 h4 {

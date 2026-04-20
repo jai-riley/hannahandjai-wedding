@@ -31,18 +31,33 @@
 }
 .btn-fill {
 	color: $white-color;
-	border: solid 2px $accent-color;
+	border: solid 2px $forest-green;
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
 	border-radius: 40px;
 	display: inline-block;
 	text-transform: uppercase;
-	background-color: $accent-color;
+	background-color: $forest-green;
 }
 .btn-fill:hover, .btn-fill:focus {
 	color: $white-color;
-	background-color: $accent-color-hover;
-	border-color: $accent-color-hover;
+	background-color: darken($forest-green, 8%);
+	border-color: darken($forest-green, 8%);
+}
+.btn-accent {
+	color: $white-color;
+	border: solid 2px $terracotta;
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
+	border-radius: 40px;
+	display: inline-block;
+	text-transform: uppercase;
+	background-color: $terracotta;
+}
+.btn-accent:hover, .btn-accent:focus {
+	color: $white-color;
+	background-color: darken($terracotta, 8%);
+	border-color: darken($terracotta, 8%);
 }
 .btn-small {
 	padding: 8px 30px;

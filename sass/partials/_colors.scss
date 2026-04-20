@@ -1,32 +1,38 @@
-// Colours partial
+// Colours partial — Summer Camp Theme
+
+// Camp palette
+$forest-green:   #2D4A2D;
+$warm-tan:       #C8A96E;
+$terracotta:     #C4623A;
+$cream:          #F5EFE0;
+$off-white:      #FAF7F2;
+$dark-brown:     #3A2A1A;
 
 // Text colours
-$txt-primary: rgba(28, 54, 83, 0.6);
-// body font
-$txt-secondary: #3D4351;
-// heading font
-$txt-light: #fff;
-// header/hero
-$txt-accent: #ACB1B4;
-$form-placeholder: #BCC1C3;
-// form placeholder text
+$txt-primary:    rgba(58, 42, 26, 0.75);
+$txt-secondary:  $dark-brown;
+$txt-light:      #fff;
+$txt-accent:     $warm-tan;
+$form-placeholder: #A89880;
+
 // Global colours
-$accent-color: #e8ca6f;
-// global accent colour
-$accent-color-hover: #d3b56a;
-// global accent colour hover
-$white-color: #fff;
-$black-color: #000;
+$accent-color:       $warm-tan;
+$accent-color-hover: darken($warm-tan, 10%);
+$white-color:  #fff;
+$black-color:  #000;
+
 // Typography colours
-$h2-color: #3D4351;
-$h3-color: #3D4351;
-$h5-color: #3D4351;
+$h2-color: $dark-brown;
+$h3-color: $forest-green;
+$h5-color: $dark-brown;
+
 // Layout colours
-$section-light: #fff;
-$section-dark: #f8f9fd;
-$to-top-bg: #495061;
-$footer-primary: #3D4351;
-$footer-secondary: #373D4A;
+$section-light: $off-white;
+$section-dark:  $cream;
+$to-top-bg:     $forest-green;
+$footer-primary:   $dark-brown;
+$footer-secondary: darken($dark-brown, 5%);
+
 // Keylines
-$keyline-color: #E6E9EA;
-$footer-keyline-color: #4E566C;
+$keyline-color:        rgba(58, 42, 26, 0.15);
+$footer-keyline-color: rgba(255, 255, 255, 0.15);

@@ -1,7 +1,5 @@
-// Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,300,400italic,300italic,700,700italic);
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,300,700);
+// Google Fonts — Camp Theme
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
 // Imports
 //@import "compass";
 @import "partials/typography";
@@ -269,13 +267,21 @@ Hero
   }
   h1 {
     color: $txt-light;
-    margin-bottom: 40px;
+    font-family: $accent-font;
+    font-size: 90px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
   }
   p.intro {
-    color: $txt-light;
-    font-size: 20px;
+    color: rgba(255,255,255,0.9);
+    font-size: 18px;
     font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     margin-bottom: 80px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
   }
   .hero-content {
     padding-top: 40%;
@@ -293,7 +299,7 @@ Hero
 }
 .fixed {
   position: fixed;
-  background-color: rgba(55, 36, 40, .88);
+  background-color: rgba(45, 74, 45, .93);
   z-index: 999;
   width: 100%;
 }
@@ -316,9 +322,14 @@ header {
   }
   .logo {
     display: inline-block;
-  }
-  .logo img {
-    height: 19px;
+    a {
+      font-family: $accent-font;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: $txt-light !important;
+      text-transform: none;
+    }
   }
   ul.primary-nav {
     margin: 0 0 0 75px;
@@ -898,4 +909,300 @@ body.modal-open {
 }
 .modal-body {
   padding:25px;
+}
+
+/* ==========================================================================
+Camp Theme — Itinerary / Schedule
+========================================================================== */
+.events {
+  #schedule-tabs {
+    border-bottom: 2px solid $warm-tan;
+    margin-bottom: 30px;
+
+    li a {
+      font-family: $serif;
+      font-size: 15px;
+      color: $txt-primary;
+      border-radius: 0;
+      border: none;
+      padding: 12px 20px;
+
+      &:hover {
+        background: transparent;
+        color: $forest-green;
+        border-bottom: 3px solid $warm-tan;
+      }
+    }
+    li.active a {
+      color: $forest-green;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid $terracotta;
+      font-weight: 700;
+    }
+  }
+}
+
+.timeline {
+  padding: 10px 0;
+}
+
+.timeline-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid $keyline-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &[data-party="true"] {
+    display: none;
+  }
+}
+
+body.party-unlocked .timeline-card[data-party="true"] {
+  display: flex;
+}
+
+.timeline-time {
+  min-width: 110px;
+  font-family: $serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: $terracotta;
+  padding-top: 4px;
+  text-align: right;
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.timeline-body {
+  flex: 1;
+
+  .timeline-toggle {
+    display: block;
+    font-family: $serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: $forest-green;
+    cursor: pointer;
+    padding-bottom: 4px;
+
+    &:hover {
+      color: $terracotta;
+      text-decoration: none;
+    }
+
+    i.fa-chevron-down {
+      font-size: 12px;
+      color: $warm-tan;
+      margin-top: 5px;
+    }
+  }
+
+  .collapse p {
+    margin-top: 8px;
+    padding-bottom: 0;
+    font-size: 14px;
+    color: $txt-primary;
+  }
+}
+
+.party-badge {
+  display: inline-block;
+  background: $terracotta;
+  color: #fff;
+  font-size: 10px;
+  font-family: $sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+Camp Theme — Pack Your Bags
+========================================================================== */
+#pack-your-bags {
+  h5 {
+    font-family: $serif;
+    font-size: 18px;
+    color: $forest-green;
+    margin-bottom: 16px;
+    i { color: $terracotta; margin-right: 6px; }
+  }
+
+  .pack-list {
+    li {
+      padding: 5px 0;
+      font-size: 14px;
+      color: $txt-primary;
+      i {
+        color: $warm-tan;
+        margin-right: 8px;
+        width: 14px;
+      }
+    }
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+/* ==========================================================================
+Camp Theme — Menu Accordion
+========================================================================== */
+#menu {
+  .panel-group {
+    .panel {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid $keyline-color;
+      box-shadow: none;
+      background: transparent;
+
+      &:first-child {
+        border-top: 1px solid $keyline-color;
+      }
+    }
+
+    .panel-heading {
+      background: transparent;
+      padding: 0;
+
+      .panel-title a {
+        display: block;
+        padding: 16px 4px;
+        font-family: $serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: $forest-green;
+        text-decoration: none;
+
+        small {
+          font-weight: 300;
+          color: $txt-primary;
+          margin-left: 4px;
+        }
+
+        i.fa-chevron-down {
+          color: $warm-tan;
+          font-size: 12px;
+          margin-top: 4px;
+        }
+
+        &:hover {
+          color: $terracotta;
+        }
+      }
+    }
+
+    .panel-body {
+      padding: 4px 4px 20px;
+
+      ul {
+        li {
+          padding: 4px 0;
+          font-size: 14px;
+          color: $txt-primary;
+          list-style: none;
+        }
+      }
+    }
+  }
+
+  .label-diet {
+    display: inline-block;
+    background: $forest-green;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+}
+
+/* ==========================================================================
+Camp Theme — RSVP attendance options
+========================================================================== */
+.rsvp-attendance {
+  text-align: left;
+  margin: 10px 0 16px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid $keyline-color;
+  border-radius: 5px;
+
+  label {
+    color: $txt-primary;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .radio label {
+    font-weight: 300;
+    padding-left: 8px;
+    cursor: pointer;
+
+    strong {
+      color: $forest-green;
+    }
+  }
+}
+
+/* ==========================================================================
+Camp Theme — Footer
+========================================================================== */
+footer {
+  background: $forest-green;
+
+  .content {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 20px;
+  }
+
+  p {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+  }
+
+  .to-top-wrapper {
+    border-color: rgba(255,255,255,0.2);
+    background: transparent;
+
+    .to-top {
+      color: $warm-tan;
+    }
+  }
+
+  span.fa-heart {
+    color: $terracotta;
+  }
+}
+
+/* ==========================================================================
+Camp Theme — Invitation section
+========================================================================== */
+#invitation {
+  text-align: center;
+  border-bottom: 1px solid $keyline-color;
+
+  p {
+    font-size: 16px;
+    color: $txt-primary;
+  }
 }
