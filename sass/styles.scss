@@ -1112,6 +1112,13 @@ Camp Theme — Menu Accordion
     .panel-body {
       padding: 4px 4px 20px;
 
+      .menu-sub-heading {
+        display: block;
+        font-size: 14px;
+        color: $dark-brown;
+        margin-bottom: 4px;
+      }
+
       ul {
         li {
           padding: 4px 0;
@@ -1170,24 +1177,31 @@ Camp Theme — RSVP attendance options
 /* Dietary checkboxes */
 .dietary-group {
   height: auto !important;
-  padding: 12px 16px 12px 50px;
+  display: flex !important;
+  align-items: flex-start !important;
+  padding: 12px 16px !important;
+  gap: 12px;
 
   .dietary-icon {
-    position: absolute;
-    left: 16px;
-    top: 14px;
+    position: static;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .dietary-checkboxes {
+    flex: 1;
   }
 
   .dietary-label {
     color: $form-placeholder;
     font-size: 14px;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
   }
 
   .dietary-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
+    gap: 6px 18px;
   }
 
   .dietary-check {
