@@ -162,9 +162,10 @@ $(document).ready(function () {
         var val = parseInt($(this).val(), 10);
         if (val > 0) {
             $('#guest-names-row').show();
+            $('#guest-names').prop('required', true);
         } else {
             $('#guest-names-row').hide();
-            $('#guest-names').val('');
+            $('#guest-names').val('').prop('required', false);
         }
     });
 
