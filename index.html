@@ -660,8 +660,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-input-group">
-                                <i class="fa fa-leaf"></i><input name="dietary" placeholder="Dietary restrictions or allergies (optional)">
+                            <div class="form-input-group dietary-group">
+                                <i class="fa fa-leaf dietary-icon"></i>
+                                <div class="dietary-checkboxes">
+                                    <p class="dietary-label">Dietary restrictions or allergies (optional)</p>
+                                    <div class="dietary-options">
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Vegetarian"> Vegetarian</label>
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Vegan"> Vegan</label>
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Gluten-free"> Gluten-free</label>
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Halal"> Halal</label>
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Nut allergy"> Nut allergy</label>
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Dairy-free"> Dairy-free</label>
+                                        <label class="dietary-check"><input type="checkbox" name="dietary[]" value="Other"> Other</label>
+                                    </div>
+                                    <input type="text" id="dietary-other-text" name="dietary_other" placeholder="Please specify..." style="display:none;">
+                                </div>
                             </div>
                         </div>
                     </div>

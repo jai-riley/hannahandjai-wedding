@@ -157,6 +157,15 @@ $(document).ready(function () {
     $('#add-to-cal').html(myCalendar);
 
 
+    // Toggle "Other" dietary text input
+    $('input[name="dietary[]"][value="Other"]').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('#dietary-other-text').show().focus();
+        } else {
+            $('#dietary-other-text').hide().val('');
+        }
+    });
+
     /********************** RSVP **********************/
     // MD5 hashes for invite codes (placeholders — change before launch)
     // CAMP2027  -> general guests
@@ -180,6 +189,16 @@ $(document).ready(function () {
 
         // Build payload including new fields
         var formData = $(this).serializeArray();
+
+        // Collect dietary checkboxes into single string, remove individual entries
+        formData = formData.filter(function(f) { return f.name !== 'dietary[]' && f.name !== 'dietary_other'; });
+        var dietaryChecked = $('input[name="dietary[]"]:checked').map(function() { return this.value; }).get();
+        var dietaryOther = $('#dietary-other-text').val().trim();
+        if (dietaryChecked.indexOf('Other') !== -1 && dietaryOther) {
+            dietaryChecked[dietaryChecked.indexOf('Other')] = 'Other: ' + dietaryOther;
+        }
+        formData.push({ name: 'dietary', value: dietaryChecked.join(', ') });
+
         formData.push({ name: 'wedding_party', value: isParty ? 'Yes' : 'No' });
         var data = $.param(formData);
 
