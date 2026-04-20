@@ -310,13 +310,15 @@ header {
   width: 1170px;
   margin: 0 auto;
   transition: padding 300ms ease-in-out;
-  display: flex;
-  align-items: center;
 
   a {
     color: $txt-light;
     text-transform: uppercase;
     font-size: $nav-font-size;
+  }
+  .header-content {
+    display: flex;
+    align-items: center;
   }
   .logo {
     flex-shrink: 0;
@@ -331,10 +333,12 @@ header {
   }
   .header-nav {
     flex: 1;
+    display: inline-block;
   }
   ul.primary-nav {
     margin: 0 0 0 40px;
     padding: 0;
+    display: inline;
 
     li {
       display: inline;
@@ -353,7 +357,7 @@ header {
     }
   }
   ul.member-actions {
-    flex-shrink: 0;
+    float: right;
     margin: 0;
     padding: 0;
 
