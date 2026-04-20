@@ -1035,7 +1035,13 @@ body.party-unlocked .timeline-card[data-party="true"] {
 Camp Theme — Pack Your Bags
 ========================================================================== */
 #pack-your-bags {
+  .row > [class*="col-"] {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
   h5 {
+    margin-top: 0;
     font-family: $serif;
     font-size: 18px;
     color: $forest-green;
