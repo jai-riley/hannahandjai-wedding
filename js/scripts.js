@@ -174,31 +174,48 @@ $(document).ready(function () {
 
 
     /********************** RSVP **********************/
+    // MD5 hashes for invite codes (placeholders — change before launch)
+    // CAMP2027  -> general guests
+    // PARTY2027 -> wedding party (unlocks rehearsal dinner itinerary card)
+    var GUEST_CODE_HASH = '481a5d733c2f6d94948ea909661679e8';  // MD5('CAMP2027')
+    var PARTY_CODE_HASH = '337cb31285917bedfa7e641fa71f9d85';  // MD5('PARTY2027')
+
     $('#rsvp-form').on('submit', function (e) {
         e.preventDefault();
-        var data = $(this).serialize();
+
+        var codeHash = MD5($('#invite_code').val().trim());
+        var isParty  = (codeHash === PARTY_CODE_HASH);
+        var isValid  = isParty || (codeHash === GUEST_CODE_HASH);
 
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-        if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
+        if (!isValid) {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
-        } else {
-            $.post('https://script.google.com/macros/s/AKfycbyo0rEknln8LedEP3bkONsfOh776IR5lFidLhJFQ6jdvRiH4dKvHZmtoIybvnxpxYr2cA/exec', data)
-                .done(function (data) {
-                    console.log(data);
-                    if (data.result === "error") {
-                        $('#alert-wrapper').html(alert_markup('danger', data.message));
-                    } else {
-                        $('#alert-wrapper').html('');
-                        $('#rsvp-modal').modal('show');
-                    }
-                })
-                .fail(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-                });
+            return;
         }
+
+        // Build payload including new fields
+        var formData = $(this).serializeArray();
+        formData.push({ name: 'wedding_party', value: isParty ? 'Yes' : 'No' });
+        var data = $.param(formData);
+
+        // TODO: replace this URL with your own Google Apps Script endpoint
+        $.post('https://script.google.com/macros/s/REPLACE_WITH_YOUR_APPS_SCRIPT_URL/exec', data)
+            .done(function (data) {
+                if (data.result === 'error') {
+                    $('#alert-wrapper').html(alert_markup('danger', data.message));
+                } else {
+                    if (isParty) {
+                        localStorage.setItem('weddingParty', 'true');
+                        document.body.classList.add('party-unlocked');
+                    }
+                    $('#alert-wrapper').html('');
+                    $('#rsvp-modal').modal('show');
+                }
+            })
+            .fail(function () {
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There was an issue saving your RSVP. Please try again or email us at hannahandjai2027@gmail.com'));
+            });
     });
 
 });
