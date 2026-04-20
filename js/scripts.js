@@ -157,6 +157,17 @@ $(document).ready(function () {
     $('#add-to-cal').html(myCalendar);
 
 
+    // Show/hide guest names field based on extras count
+    $('#extras-count').on('input change', function () {
+        var val = parseInt($(this).val(), 10);
+        if (val > 0) {
+            $('#guest-names-row').show();
+        } else {
+            $('#guest-names-row').hide();
+            $('#guest-names').val('');
+        }
+    });
+
     // Toggle "Other" dietary text input
     $('input[name="dietary[]"][value="Other"]').on('change', function () {
         if ($(this).is(':checked')) {

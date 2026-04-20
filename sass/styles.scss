@@ -1182,6 +1182,13 @@ Camp Theme — Menu Accordion
 /* ==========================================================================
 Camp Theme — RSVP attendance options
 ========================================================================== */
+.guest-names-note {
+  font-size: 12px;
+  color: $form-placeholder;
+  margin: 4px 0 0;
+  font-style: italic;
+}
+
 .rsvp-attendance {
   text-align: left;
   margin: 10px 0 16px;
@@ -1212,6 +1219,7 @@ Camp Theme — RSVP attendance options
 .dietary-group {
   height: auto !important;
   padding: 12px 16px 14px !important;
+  background: #fff !important;
 
   // suppress the absolute-positioned vertical keyline drawn by i:after
   i::after {
@@ -1260,7 +1268,7 @@ Camp Theme — RSVP attendance options
     margin: 0;
 
     input[type="checkbox"] {
-      accent-color: $forest-green;
+      accent-color: $warm-tan;
       width: 15px;
       height: 15px;
       cursor: pointer;
