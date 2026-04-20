@@ -304,24 +304,22 @@ Hero
   width: 100%;
 }
 header {
-  padding: 50px 0;
+  padding: 24px 0;
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
   position: relative;
   width: 1170px;
   margin: 0 auto;
   transition: padding 300ms ease-in-out;
+  display: flex;
+  align-items: center;
 
   a {
     color: $txt-light;
     text-transform: uppercase;
     font-size: $nav-font-size;
-
-    &.login {
-      margin-right: 20px;
-    }
   }
   .logo {
-    display: inline-block;
+    flex-shrink: 0;
     a {
       font-family: $accent-font;
       font-size: 26px;
@@ -331,8 +329,11 @@ header {
       text-transform: none;
     }
   }
+  .header-nav {
+    flex: 1;
+  }
   ul.primary-nav {
-    margin: 0 0 0 75px;
+    margin: 0 0 0 40px;
     padding: 0;
 
     li {
@@ -347,11 +348,15 @@ header {
         }
       }
       &:last-child a {
-        padding-right: 0px;
+        padding-right: 0;
       }
     }
   }
   ul.member-actions {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+
     li {
       display: inline;
 
@@ -364,13 +369,7 @@ header {
       }
     }
   }
-  .header-nav {
-    display: inline-block;
-  }
   .member-actions {
-    position: absolute;
-    right: 0;
-    top: 41px;
     transition: all 300ms ease-in-out;
   }
 }
