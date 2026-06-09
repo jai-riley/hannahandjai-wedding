@@ -456,8 +456,8 @@
 
 .slideshow-thumb {
     flex-shrink: 0;
-    width: calc(20% - 7px);
-    height: 80px;
+    width: 160px;
+    height: 90px;
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
@@ -505,7 +505,8 @@
     }
 
     .slideshow-thumb {
-        height: 56px;
+        width: 100px;
+        height: 60px;
     }
 
     .slideshow-thumb-arrow {

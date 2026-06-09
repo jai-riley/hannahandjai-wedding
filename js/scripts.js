@@ -135,8 +135,6 @@ $(document).ready(function () {
             }, 430);
         }
 
-        $('.slideshow-next').on('click', function (e) { e.stopPropagation(); goTo(current + 1,  1); });
-        $('.slideshow-prev').on('click', function (e) { e.stopPropagation(); goTo(current - 1, -1); });
         $('.slideshow-viewport').on('click', function () { goTo(current + 1, 1); });
 
         $(document).on('click', '.slideshow-thumb', function (e) {
