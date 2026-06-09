@@ -383,10 +383,12 @@
 }
 
 #eng-pics .slideshow-img-wrap img {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 520px;
     display: block;
+    margin: 0 auto;
     transition: opacity 0.25s ease;
     border-radius: 4px;
 }
@@ -426,7 +428,7 @@
 
 @media screen and (max-width: 768px) {
     #eng-pics .slideshow-img-wrap img {
-        height: 280px;
+        max-height: 300px;
     }
 
     .slideshow-btn {
