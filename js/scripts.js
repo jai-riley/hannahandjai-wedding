@@ -59,11 +59,40 @@ $(document).ready(function () {
         padding: 4
     });
 
-    $('.fancybox').fancybox({
-        padding: 4,
-        width: 1000,
-        height: 800
-    });
+    /***************** Photo Slideshow ******************/
+    (function () {
+        var total = 23;
+        var current = 1;
+        var $img = $('#slideshow-img');
+        var $counter = $('#slideshow-current');
+        var transitioning = false;
+
+        function pad(n) {
+            return n < 10 ? '0' + n : '' + n;
+        }
+
+        function goTo(n) {
+            if (transitioning) return;
+            transitioning = true;
+            $img.css('opacity', 0);
+            setTimeout(function () {
+                current = ((n - 1 + total) % total) + 1;
+                $img.attr('src', 'img/photos/gallery/photo-' + pad(current) + '-lg.jpg');
+                $counter.text(current);
+                $img.css('opacity', 1);
+                transitioning = false;
+            }, 250);
+        }
+
+        $('.slideshow-next').on('click', function () { goTo(current + 1); });
+        $('.slideshow-prev').on('click', function () { goTo(current - 1); });
+        $('.slideshow-img-wrap').on('click', function () { goTo(current + 1); });
+
+        $(document).on('keydown', function (e) {
+            if (e.which === 39) goTo(current + 1);
+            if (e.which === 37) goTo(current - 1);
+        });
+    }());
 
     /***************** Tooltips ******************/
     $('[data-toggle="tooltip"]').tooltip();
