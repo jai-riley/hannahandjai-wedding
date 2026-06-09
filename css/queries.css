@@ -454,7 +454,7 @@
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.slideshow-thumb {
+#eng-pics .slideshow-thumb {
     flex-shrink: 0;
     width: 160px;
     height: 90px;
@@ -466,11 +466,11 @@
     transition: opacity 200ms ease, border-color 200ms ease;
 }
 
-.slideshow-thumb:hover {
+#eng-pics .slideshow-thumb:hover {
     opacity: 1;
 }
 
-.slideshow-thumb.thumb-active {
+#eng-pics .slideshow-thumb.thumb-active {
     border-color: #c8a96e;
     opacity: 1;
 }
