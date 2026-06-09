@@ -118,21 +118,15 @@ $(document).ready(function () {
             var $incoming = $('.slide:not(.slide-active)');
 
             $incoming.attr('src', photoSrc(next));
-            $incoming.removeClass('slide-active slide-offright slide-offleft')
-                     .addClass(dir >= 0 ? 'slide-offright' : 'slide-offleft');
-
-            $incoming[0].offsetWidth;
-
-            $incoming.removeClass('slide-offright slide-offleft').addClass('slide-active');
-            $active.addClass(dir >= 0 ? 'slide-offleft' : 'slide-offright');
+            $incoming.addClass('slide-active');
+            $active.removeClass('slide-active');
 
             updateThumbs(next);
 
             setTimeout(function () {
-                $active.removeClass('slide-active slide-offleft slide-offright');
                 current = next;
                 transitioning = false;
-            }, 430);
+            }, 420);
         }
 
         $('.slideshow-viewport').on('click', function () { goTo(current + 1, 1); });
