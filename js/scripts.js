@@ -63,9 +63,6 @@ $(document).ready(function () {
     (function () {
         var total = 23;
         var current = 1;
-        var $img = $('#slideshow-img');
-        var $prevImg = $('#slideshow-prev-img');
-        var $nextImg = $('#slideshow-next-img');
         var $counter = $('#slideshow-current');
         var transitioning = false;
 
@@ -77,34 +74,41 @@ $(document).ready(function () {
             return 'img/photos/gallery/photo-' + pad(((n - 1 + total) % total) + 1) + '-lg.jpg';
         }
 
-        function updateSides() {
-            $prevImg.attr('src', photoSrc(current - 1));
-            $nextImg.attr('src', photoSrc(current + 1));
-        }
-
-        function goTo(n) {
+        function goTo(n, dir) {
             if (transitioning) return;
             transitioning = true;
-            $img.css('opacity', 0);
+
+            var next = ((n - 1 + total) % total) + 1;
+            var $active   = $('.slide.slide-active');
+            var $incoming = $('.slide:not(.slide-active)');
+
+            // Pre-position incoming off-screen, load its src
+            $incoming.attr('src', photoSrc(next));
+            $incoming.removeClass('slide-active slide-offright slide-offleft')
+                     .addClass(dir >= 0 ? 'slide-offright' : 'slide-offleft');
+
+            // Force reflow so the off-screen position is painted before we remove the class
+            $incoming[0].offsetWidth;
+
+            // Slide both
+            $incoming.removeClass('slide-offright slide-offleft').addClass('slide-active');
+            $active.addClass(dir >= 0 ? 'slide-offleft' : 'slide-offright');
+
             setTimeout(function () {
-                current = ((n - 1 + total) % total) + 1;
-                $img.attr('src', photoSrc(current));
+                $active.removeClass('slide-active slide-offleft slide-offright');
+                current = next;
                 $counter.text(current);
-                updateSides();
-                $img.css('opacity', 1);
                 transitioning = false;
-            }, 250);
+            }, 430);
         }
 
-        updateSides();
-
-        $('.slideshow-next').on('click', function () { goTo(current + 1); });
-        $('.slideshow-prev').on('click', function () { goTo(current - 1); });
-        $('.slideshow-center-cell').on('click', function () { goTo(current + 1); });
+        $('.slideshow-next').on('click', function (e) { e.stopPropagation(); goTo(current + 1,  1); });
+        $('.slideshow-prev').on('click', function (e) { e.stopPropagation(); goTo(current - 1, -1); });
+        $('.slideshow-viewport').on('click', function ()  { goTo(current + 1, 1); });
 
         $(document).on('keydown', function (e) {
-            if (e.which === 39) goTo(current + 1);
-            if (e.which === 37) goTo(current - 1);
+            if (e.which === 39) goTo(current + 1,  1);
+            if (e.which === 37) goTo(current - 1, -1);
         });
     }());
 
