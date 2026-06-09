@@ -63,8 +63,8 @@ $(document).ready(function () {
     (function () {
         var total = 23;
         var current = 1;
-        var $counter = $('#slideshow-current');
         var transitioning = false;
+        var THUMB_VISIBLE = 5;
 
         function pad(n) {
             return n < 10 ? '0' + n : '' + n;
@@ -72,6 +72,41 @@ $(document).ready(function () {
 
         function photoSrc(n) {
             return 'img/photos/gallery/photo-' + pad(((n - 1 + total) % total) + 1) + '-lg.jpg';
+        }
+
+        function thumbSrc(n) {
+            return 'img/photos/gallery/photo-' + pad(n) + '-sm.jpg';
+        }
+
+        // Build thumbnail strip
+        var $track = $('#slideshow-thumbs-track');
+        for (var i = 1; i <= total; i++) {
+            $track.append(
+                '<img class="slideshow-thumb' + (i === 1 ? ' thumb-active' : '') + '" ' +
+                'src="' + thumbSrc(i) + '" ' +
+                'data-index="' + i + '" ' +
+                'alt="Photo ' + i + '" />'
+            );
+        }
+
+        function updateThumbs(next) {
+            $('.slideshow-thumb').removeClass('thumb-active');
+            $('.slideshow-thumb[data-index="' + next + '"]').addClass('thumb-active');
+            scrollThumbsTo(next);
+        }
+
+        function scrollThumbsTo(n) {
+            var $viewport = $('.slideshow-thumbs-viewport');
+            var $thumb = $('.slideshow-thumb[data-index="' + n + '"]');
+            if (!$thumb.length) return;
+            var thumbW = $thumb.outerWidth(true);
+            var viewportW = $viewport.width();
+            // position() is relative to offset parent ($track), unaffected by track's own transform
+            var thumbLeft = $thumb.position().left;
+            var maxScroll = $track.outerWidth() - viewportW;
+            var targetScroll = thumbLeft - (viewportW / 2) + (thumbW / 2);
+            targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+            $track.css('transform', 'translateX(-' + targetScroll + 'px)');
         }
 
         function goTo(n, dir) {
@@ -82,29 +117,37 @@ $(document).ready(function () {
             var $active   = $('.slide.slide-active');
             var $incoming = $('.slide:not(.slide-active)');
 
-            // Pre-position incoming off-screen, load its src
             $incoming.attr('src', photoSrc(next));
             $incoming.removeClass('slide-active slide-offright slide-offleft')
                      .addClass(dir >= 0 ? 'slide-offright' : 'slide-offleft');
 
-            // Force reflow so the off-screen position is painted before we remove the class
             $incoming[0].offsetWidth;
 
-            // Slide both
             $incoming.removeClass('slide-offright slide-offleft').addClass('slide-active');
             $active.addClass(dir >= 0 ? 'slide-offleft' : 'slide-offright');
+
+            updateThumbs(next);
 
             setTimeout(function () {
                 $active.removeClass('slide-active slide-offleft slide-offright');
                 current = next;
-                $counter.text(current);
                 transitioning = false;
             }, 430);
         }
 
         $('.slideshow-next').on('click', function (e) { e.stopPropagation(); goTo(current + 1,  1); });
         $('.slideshow-prev').on('click', function (e) { e.stopPropagation(); goTo(current - 1, -1); });
-        $('.slideshow-viewport').on('click', function ()  { goTo(current + 1, 1); });
+        $('.slideshow-viewport').on('click', function () { goTo(current + 1, 1); });
+
+        $(document).on('click', '.slideshow-thumb', function (e) {
+            e.stopPropagation();
+            var idx = parseInt($(this).data('index'), 10);
+            var dir = idx >= current ? 1 : -1;
+            goTo(idx, dir);
+        });
+
+        $('.slideshow-thumb-prev').on('click', function (e) { e.stopPropagation(); goTo(current - 1, -1); });
+        $('.slideshow-thumb-next').on('click', function (e) { e.stopPropagation(); goTo(current + 1,  1); });
 
         $(document).on('keydown', function (e) {
             if (e.which === 39) goTo(current + 1,  1);
