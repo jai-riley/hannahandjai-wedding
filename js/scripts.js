@@ -116,17 +116,26 @@ $(document).ready(function () {
             var next = ((n - 1 + total) % total) + 1;
             var $active   = $('.slide.slide-active');
             var $incoming = $('.slide:not(.slide-active)');
+            var newSrc = photoSrc(next);
 
-            $incoming.attr('src', photoSrc(next));
-            $incoming.addClass('slide-active');
-            $active.removeClass('slide-active');
+            function doTransition() {
+                $incoming.addClass('slide-active');
+                $active.removeClass('slide-active');
+                updateThumbs(next);
+                setTimeout(function () {
+                    current = next;
+                    transitioning = false;
+                }, 420);
+            }
 
-            updateThumbs(next);
+            $incoming.attr('src', newSrc);
 
-            setTimeout(function () {
-                current = next;
-                transitioning = false;
-            }, 420);
+            // If cached/already-loaded, transition immediately; otherwise wait for the image to load
+            if ($incoming[0].complete && $incoming[0].naturalWidth !== 0) {
+                doTransition();
+            } else {
+                $incoming.one('load', doTransition);
+            }
         }
 
         $('.slideshow-viewport').on('click', function () { goTo(current + 1, 1); });
