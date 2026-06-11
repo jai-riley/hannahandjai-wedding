@@ -61,7 +61,8 @@ $(document).ready(function () {
 
     /***************** Photo Slideshow ******************/
     (function () {
-        var total = 23;
+        var total = 22;
+        var offset = 1; // gallery files start at photo-02 (photo-01 removed)
         var current = 1;
         var transitioning = false;
         var THUMB_VISIBLE = 5;
@@ -71,11 +72,11 @@ $(document).ready(function () {
         }
 
         function photoSrc(n) {
-            return 'img/photos/gallery/photo-' + pad(((n - 1 + total) % total) + 1) + '-lg.jpg';
+            return 'img/photos/gallery/photo-' + pad(((n - 1 + total) % total) + 1 + offset) + '-lg.jpg';
         }
 
         function thumbSrc(n) {
-            return 'img/photos/gallery/photo-' + pad(n) + '-sm.jpg';
+            return 'img/photos/gallery/photo-' + pad(n + offset) + '-sm.jpg';
         }
 
         // Build thumbnail strip
