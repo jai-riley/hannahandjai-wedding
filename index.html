@@ -59,6 +59,51 @@
     <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <style>
+        #map-canvas { height: 750px; }
+        .countdown-wrap {
+            margin: 30px auto 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .countdown-unit {
+            text-align: center;
+            min-width: 80px;
+        }
+        .countdown-number {
+            display: block;
+            font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2d4a2d;
+            line-height: 1;
+        }
+        .countdown-label {
+            display: block;
+            font-family: "Lato", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c8a96e;
+            margin-top: 6px;
+        }
+        .countdown-divider {
+            font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+            font-size: 42px;
+            color: rgba(200, 169, 110, 0.4);
+            align-self: flex-start;
+            padding-top: 2px;
+            line-height: 1;
+        }
+        @media (max-width: 480px) {
+            .countdown-number { font-size: 36px; }
+            .countdown-unit { min-width: 60px; }
+            .countdown-divider { font-size: 30px; }
+        }
+    </style>
 </head>
 <body id="top">
 <!--[if lt IE 8]>
@@ -114,6 +159,50 @@
             <div class="col-md-12 text-center">
                 <h3>We're getting married!</h3>
                 <p>Join us for a weekend at camp, June 11–13, 2027, at Mulhurst Camp on Pigeon Lake, Alberta.<br>We would love for you to be a part of it.</p>
+                <div class="countdown-wrap" id="wedding-countdown">
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="cd-days">--</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <span class="countdown-divider">:</span>
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="cd-hours">--</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <span class="countdown-divider">:</span>
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="cd-minutes">--</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <span class="countdown-divider">:</span>
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="cd-seconds">--</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+                <script>
+                    (function () {
+                        var target = new Date("2027-06-12T00:00:00");
+                        function tick() {
+                            var diff = target - new Date();
+                            if (diff <= 0) {
+                                document.getElementById("wedding-countdown").innerHTML =
+                                    "<p style='font-family:\"Playfair Display\",serif;font-size:22px;color:#2d4a2d;'>Today is the day!</p>";
+                                return;
+                            }
+                            var d = Math.floor(diff / 86400000);
+                            var h = Math.floor((diff % 86400000) / 3600000);
+                            var m = Math.floor((diff % 3600000) / 60000);
+                            var s = Math.floor((diff % 60000) / 1000);
+                            document.getElementById("cd-days").textContent    = String(d).padStart(2, "0");
+                            document.getElementById("cd-hours").textContent   = String(h).padStart(2, "0");
+                            document.getElementById("cd-minutes").textContent = String(m).padStart(2, "0");
+                            document.getElementById("cd-seconds").textContent = String(s).padStart(2, "0");
+                        }
+                        tick();
+                        setInterval(tick, 1000);
+                    })();
+                </script>
             </div>
         </div>
     </div>
