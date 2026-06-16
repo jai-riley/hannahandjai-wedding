@@ -60,7 +60,9 @@
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <style>
-        #map-canvas { height: 750px; }
+        #map { position: relative; height: 500px; padding: 0; }
+        #map-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        #map-content-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 !important; display: flex; align-items: center; }
         .countdown-wrap {
             margin: 30px auto 10px;
             display: flex;
@@ -182,7 +184,7 @@
                 </div>
                 <script>
                     (function () {
-                        var target = new Date("2027-06-12T00:00:00");
+                        var target = new Date("2027-06-12T21:00:00Z"); // 3 PM MDT (UTC-6)
                         function tick() {
                             var diff = target - new Date();
                             if (diff <= 0) {
@@ -621,14 +623,9 @@
     </div>
 </section>
 
-<section id="map" class="section-padding">
-    <div class="text-center">
-        <h3>How do I get there?</h3>
-        <p>Mulhurst Camp, Pigeon Lake, Alberta</p>
-    </div>
+<section id="map">
     <iframe id="map-canvas"
         src="https://maps.google.com/maps?q=Mulhurst+Camp,+Pigeon+Lake,+Alberta&z=13&output=embed"
-        style="border:0; width:100%; height:100%;"
         allowfullscreen
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
