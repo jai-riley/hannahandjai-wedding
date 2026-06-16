@@ -60,6 +60,17 @@
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <style>
+        #venue .venue-row { display: flex; align-items: center; gap: 40px; }
+        #venue .venue-slideshow { position: relative; flex: 1; min-width: 0; border-radius: 6px; overflow: hidden; height: 380px; background: #2d4a2d; }
+        #venue .venue-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease; }
+        #venue .venue-slide.active { opacity: 1; }
+        #venue .venue-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; font-size: 26px; line-height: 1; cursor: pointer; padding: 8px 14px; border-radius: 3px; color: #2d4a2d; z-index: 2; }
+        #venue .venue-arrow:hover { background: #fff; }
+        #venue .venue-prev { left: 10px; }
+        #venue .venue-next { right: 10px; }
+        #venue .venue-info { flex: 1; min-width: 0; }
+        #venue .venue-info h3 { margin-top: 0; }
+        @media (max-width: 767px) { #venue .venue-row { flex-direction: column; } #venue .venue-slideshow { width: 100%; height: 260px; } }
         #map { position: relative; height: 500px; padding: 0; }
         #map-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         #map-content-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 !important; display: flex; align-items: center; }
@@ -124,7 +135,7 @@
                             <li><a href="#pack-your-bags">Pack Your Bags</a></li>
                             <li><a href="#menu">Menu</a></li>
                             <li><a href="#eng-pics">Photos</a></li>
-                            <li><a href="#map">Venue</a></li>
+                            <li><a href="#venue">Venue</a></li>
                         </ul>
                         <ul class="member-actions">
                             <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
@@ -205,6 +216,26 @@
                         setInterval(tick, 1000);
                     })();
                 </script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="venue" class="section-padding" style="background:#ede4cc;">
+    <div class="container">
+        <div class="venue-row">
+            <div class="venue-slideshow">
+                <img src="img/pigeonlake/lake.png" class="venue-slide active" alt="Pigeon Lake">
+                <img src="img/pigeonlake/outsideview.png" class="venue-slide" alt="Outside view of Mulhurst Camp">
+                <img src="img/pigeonlake/receptionhall.png" class="venue-slide" alt="Reception hall">
+                <button class="venue-arrow venue-prev" aria-label="Previous">&#8249;</button>
+                <button class="venue-arrow venue-next" aria-label="Next">&#8250;</button>
+            </div>
+            <div class="venue-info">
+                <h3>Mulhurst Camp</h3>
+                <p>Nestled on the shores of Pigeon Lake, Mulhurst Camp is our home for the weekend. Your stay for the full three days is completely covered — just show up and enjoy.</p>
+                <p>Accommodation includes cozy camp-style cabins as well as private work camp-style rooms, with plenty of washrooms and showers throughout. More details on your specific room will follow with your confirmation.</p>
+                <a href="#map" class="btn btn-accent btn-small"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Get Directions</a>
             </div>
         </div>
     </div>
@@ -780,5 +811,18 @@
 <script src="js/jquery.mb.YTPlayer.min.js"></script>
 <script src="js/vendor/ouical.js"></script>
 <script src="js/scripts.js"></script>
+<script>
+    (function () {
+        var slides = document.querySelectorAll('#venue .venue-slide');
+        var current = 0;
+        function show(n) {
+            slides[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+        }
+        document.querySelector('#venue .venue-prev').addEventListener('click', function () { show(current - 1); });
+        document.querySelector('#venue .venue-next').addEventListener('click', function () { show(current + 1); });
+    })();
+</script>
 </body>
 </html>
