@@ -73,7 +73,7 @@
         @media (max-width: 767px) { #venue .venue-row { flex-direction: column; } #venue .venue-slideshow { width: 100%; height: 260px; } }
         #map { position: relative; height: 500px; padding: 0; }
         #map-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        #map-content-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 !important; display: flex; align-items: center; }
+        #map-content-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 !important; display: flex; align-items: center; justify-content: center; }
         .countdown-wrap {
             margin: 30px auto 10px;
             display: flex;
@@ -233,8 +233,8 @@
             </div>
             <div class="venue-info">
                 <h3>Mulhurst Camp</h3>
-                <p>Nestled on the shores of Pigeon Lake, Mulhurst Camp is our home for the weekend. Your stay for the full three days is completely covered, just show up and enjoy.</p>
-                <p>Accommodation includes cozy camp-style cabins as well as private work camp-style rooms, with plenty of washrooms and showers throughout. More details on your specific room will follow with your confirmation.</p>
+                <p>Nestled on the shores of Pigeon Lake, Mulhurst Camp is our home for the weekend. </p>
+                <p>We are pleased to provide all guests the complimentary option of staying at Mulhurst Camp for the weekend. There are a range of modern facilities - larger rooms with an en suite bathroom as well as single bed rooms with shared bathrooms. There is also a large campsite adjacent to the property with powered RV and tent sites which you are welcome to use. If you prefer staying off site, there are a few hotels and many rentals around Pigeon Lake.</p>
                 <a href="#map" class="btn btn-accent btn-small"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Get Directions</a>
             </div>
         </div>
@@ -654,42 +654,6 @@
     </div>
 </section>
 
-<section id="map">
-    <iframe id="map-canvas"
-        src="https://maps.google.com/maps?q=Mulhurst+Camp,+Pigeon+Lake,+Alberta&z=13&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div id="map-content-wrapper" class="container pointer-events-none">
-        <div class="row">
-            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-                <div class="text-center">
-                    <div id="btn-show-content" class="toggle-map-content pointer-events-auto">
-                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Show info
-                    </div>
-                </div>
-                <div id="map-content" class="pointer-events-auto">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>Mulhurst Camp</h5>
-                            <p>Pigeon Lake, Alberta</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5>Questions?</h5>
-                            <p><i class="fa fa-envelope"></i> <a href="mailto:wedding@hannahandjai.com">wedding@hannahandjai.com</a></p>
-                        </div>
-                    </div>
-                    <div class="row text-center">
-                        <div class="col-md-6" style="padding: 5px;">
-                            <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Show map</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="rsvp text-center" id="rsvp">
 
     <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -788,6 +752,40 @@
                     </div>
                     <button class="btn-fill rsvp-btn">Count me in!</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map">
+    <iframe id="map-canvas"
+        src="https://maps.google.com/maps?q=Mulhurst+Camp,+Pigeon+Lake,+Alberta&z=13&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div id="map-content-wrapper" class="pointer-events-none">
+        <div class="col-xs-10 col-md-4 pointer-events-auto">
+            <div class="text-center">
+                <div id="btn-show-content" class="toggle-map-content pointer-events-auto">
+                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Show info
+                </div>
+            </div>
+            <div id="map-content" class="pointer-events-auto">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Mulhurst Camp</h5>
+                        <p>Pigeon Lake, Alberta</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Questions?</h5>
+                        <p><i class="fa fa-envelope"></i> <a href="mailto:wedding@hannahandjai.com">wedding@hannahandjai.com</a></p>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6" style="padding: 5px;">
+                        <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Show map</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
