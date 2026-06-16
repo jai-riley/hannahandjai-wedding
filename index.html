@@ -126,6 +126,8 @@
         .accommodation-check { font-weight: 300; font-size: 14px; color: rgba(58,42,26,0.75); cursor: pointer; display: flex; align-items: center; gap: 6px; margin: 0 0 6px !important; }
         .accommodation-check:last-child { margin-bottom: 0 !important; }
         .accommodation-check input[type=radio] { accent-color: #c8a96e; width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+        .accommodation-section textarea { width: 100%; margin-top: 10px; border: none; border-top: 1px solid rgba(58,42,26,0.15); padding: 8px 0 0; font-size: 14px; font-family: "Lato", sans-serif; font-weight: 300; color: rgba(58,42,26,0.75); background: transparent; outline: none; resize: vertical; line-height: 1.6; }
+        .accommodation-section textarea::placeholder { color: #a89880; }
         section#invitation { background: #ede4cc; }
         section.rsvp { background: #ede4cc; }
     </style>
@@ -772,6 +774,17 @@
                                 <label class="dietary-check accommodation-check">
                                     <input type="radio" name="accommodation" value="own"> I will find my own accommodations
                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="accommodation-section">
+                                <div class="dietary-header">
+                                    <i class="fa fa-comment dietary-icon"></i>
+                                    <span class="dietary-label">Anything we should know? (optional)</span>
+                                </div>
+                                <textarea name="comments" id="rsvp-comments" rows="3" placeholder="Notes, questions, anything at all..."></textarea>
                             </div>
                         </div>
                     </div>

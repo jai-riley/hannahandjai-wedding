@@ -309,6 +309,7 @@ $(document).ready(function () {
         formData.push({ name: 'staying_at_camp', value: accommodationVal === 'camp' ? 'Yes' : (accommodationVal === 'own' ? 'No' : '') });
 
         formData.push({ name: 'wedding_party', value: isParty ? 'Yes' : 'No' });
+        formData.push({ name: 'comments', value: $('#rsvp-comments').val().trim() });
         var data = $.param(formData);
 
         // TODO: replace this URL with your own Google Apps Script endpoint
