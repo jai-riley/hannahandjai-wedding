@@ -121,11 +121,13 @@
             .countdown-unit { min-width: 60px; }
             .countdown-divider { font-size: 30px; }
         }
+        .dietary-group { background: rgba(255,255,255,0.6) !important; }
         .accommodation-section { text-align: left; margin: 10px 0 16px; padding: 16px 20px; background: rgba(255,255,255,0.6); border: 1px solid rgba(58,42,26,0.15); border-radius: 5px; }
         .accommodation-note { font-size: 14px; color: rgba(58,42,26,0.75); margin: 0 0 12px !important; padding-bottom: 0 !important; }
         .accommodation-check { font-weight: 300; font-size: 14px; color: rgba(58,42,26,0.75); cursor: pointer; display: flex; align-items: center; gap: 6px; margin: 0 0 6px !important; }
         .accommodation-check:last-child { margin-bottom: 0 !important; }
         .accommodation-check input[type=radio] { accent-color: #c8a96e; width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+        .accommodation-divider { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(58,42,26,0.15); }
         .accommodation-section textarea { width: 100%; margin-top: 10px; border: none; border-top: 1px solid rgba(58,42,26,0.15); padding: 8px 0 0; font-size: 14px; font-family: "Lato", sans-serif; font-weight: 300; color: rgba(58,42,26,0.75); background: transparent; outline: none; resize: vertical; line-height: 1.6; }
         .accommodation-section textarea::placeholder { color: #a89880; }
         section#invitation { background: #ede4cc; }
@@ -247,7 +249,6 @@
                 <button class="venue-arrow venue-next" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
             </div>
             <div class="venue-info">
-                <a href="https://mulhurstcamp.ca" target="_blank" rel="noopener" style="font-size:12px; text-transform:uppercase; letter-spacing:2px; font-weight:700;">mulhurstcamp.ca <i class="fa fa-external-link"></i></a>
                 <h3>Mulhurst Camp</h3>
                 <p>Nestled on the shores of Pigeon Lake, Mulhurst Camp is our home for the weekend. </p>
                 <p>We are pleased to provide all guests the complimentary option of staying at Mulhurst Camp for the weekend. There are a range of modern facilities - larger rooms with an en suite bathroom as well as single bed rooms with shared bathrooms. There is also a large campsite adjacent to the property with powered RV and tent sites which you are welcome to use. If you prefer staying off site, there are a few hotels and many rentals around Pigeon Lake.</p>
@@ -742,6 +743,16 @@
                                     <label><input type="radio" name="attendance" value="Wedding Only">
                                         <strong>Wedding only:</strong> Saturday June 12 ceremony &amp; reception, no overnight</label>
                                 </div>
+                                <div class="accommodation-divider">
+                                    <label><strong>Accommodation:</strong></label>
+                                    <p class="accommodation-note">Accommodation is covered if you'd like to stay with us at camp. You're also welcome to find your own if you prefer.</p>
+                                    <label class="dietary-check accommodation-check">
+                                        <input type="radio" name="accommodation" value="camp"> Yes, I will be staying at camp
+                                    </label>
+                                    <label class="dietary-check accommodation-check">
+                                        <input type="radio" name="accommodation" value="own"> I will find my own accommodations
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -761,19 +772,6 @@
                                     </div>
                                     <input type="text" id="dietary-other-text" name="dietary_other" placeholder="Please specify..." style="display:none;">
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="accommodation-section">
-                                <p class="accommodation-note">Accommodation is covered if you'd like to stay with us at camp. You're also welcome to find your own accommodations if you prefer.</p>
-                                <label class="dietary-check accommodation-check">
-                                    <input type="radio" name="accommodation" value="camp"> Yes, I will be staying at camp
-                                </label>
-                                <label class="dietary-check accommodation-check">
-                                    <input type="radio" name="accommodation" value="own"> I will find my own accommodations
-                                </label>
                             </div>
                         </div>
                     </div>
