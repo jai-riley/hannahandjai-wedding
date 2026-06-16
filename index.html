@@ -64,16 +64,21 @@
         #venue .venue-slideshow { position: relative; flex: 1; min-width: 0; border-radius: 6px; overflow: hidden; height: 380px; background: #2d4a2d; }
         #venue .venue-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease; }
         #venue .venue-slide.active { opacity: 1; }
-        #venue .venue-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; font-size: 26px; line-height: 1; cursor: pointer; width: 40px; height: 40px; padding: 0; border-radius: 3px; color: #2d4a2d; z-index: 2; display: inline-flex; align-items: center; justify-content: center; }
-        #venue .venue-arrow:hover { background: #fff; }
+        #venue .venue-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(250,247,242,0.8); border: 2px solid #c8a96e; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 16px; color: #c8a96e; cursor: pointer; z-index: 2; display: inline-flex; align-items: center; justify-content: center; transition: background-color 200ms ease, color 200ms ease; }
+        #venue .venue-arrow:hover { background-color: #c8a96e; color: #fff; }
         #venue .venue-prev { left: 10px; }
         #venue .venue-next { right: 10px; }
         #venue .venue-info { flex: 1; min-width: 0; }
         #venue .venue-info h3 { margin-top: 0; }
         @media (max-width: 767px) { #venue .venue-row { flex-direction: column; } #venue .venue-slideshow { width: 100%; height: 260px; } }
-        #map { position: relative; height: 500px; padding: 0; }
+        #map { padding: 0; }
+        #map-split { display: flex; height: 500px; }
+        #map-canvas-wrap { flex: 1; position: relative; min-width: 0; }
         #map-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        #map-content-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 !important; display: flex; align-items: center; justify-content: center; }
+        #map-info { flex: 0 0 340px; background: #faf7f2; padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; }
+        #map-info h5 { color: #2d4a2d; margin-bottom: 4px; }
+        #map-info p { margin-bottom: 20px; padding-bottom: 0; }
+        @media (max-width: 767px) { #map-split { flex-direction: column; height: auto; } #map-canvas-wrap { height: 300px; position: relative; } #map-info { flex: none; padding: 30px 24px; } }
         .countdown-wrap {
             margin: 30px auto 10px;
             display: flex;
@@ -116,6 +121,11 @@
             .countdown-unit { min-width: 60px; }
             .countdown-divider { font-size: 30px; }
         }
+        .accommodation-section { text-align: left; margin: 10px 0 16px; padding: 16px 20px; background: rgba(255,255,255,0.6); border: 1px solid rgba(58,42,26,0.15); border-radius: 5px; }
+        .accommodation-note { font-size: 14px; color: rgba(58,42,26,0.75); margin: 0 0 12px !important; padding-bottom: 0 !important; }
+        .accommodation-check { font-weight: 300; font-size: 14px; color: rgba(58,42,26,0.75); cursor: pointer; display: flex; align-items: center; gap: 6px; margin: 0 0 6px !important; }
+        .accommodation-check:last-child { margin-bottom: 0 !important; }
+        .accommodation-check input[type=radio] { accent-color: #c8a96e; width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
     </style>
 </head>
 <body id="top">
@@ -135,7 +145,7 @@
                             <li><a href="#pack-your-bags">Pack Your Bags</a></li>
                             <li><a href="#menu">Menu</a></li>
                             <li><a href="#eng-pics">Photos</a></li>
-                            <li><a href="#venue">Venue</a></li>
+                            <li><a href="#map">Directions</a></li>
                         </ul>
                         <ul class="member-actions">
                             <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
@@ -228,10 +238,11 @@
                 <img src="img/pigeonlake/lake.png" class="venue-slide active" alt="Pigeon Lake">
                 <img src="img/pigeonlake/outsideview.png" class="venue-slide" alt="Outside view of Mulhurst Camp">
                 <img src="img/pigeonlake/receptionhall.png" class="venue-slide" alt="Reception hall">
-                <button class="venue-arrow venue-prev" aria-label="Previous">&#8249;</button>
-                <button class="venue-arrow venue-next" aria-label="Next">&#8250;</button>
+                <button class="venue-arrow venue-prev" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
+                <button class="venue-arrow venue-next" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
             </div>
             <div class="venue-info">
+                <a href="https://mulhurstcamp.ca" target="_blank" rel="noopener" style="font-size:12px; text-transform:uppercase; letter-spacing:2px; font-weight:700;">mulhurstcamp.ca <i class="fa fa-external-link"></i></a>
                 <h3>Mulhurst Camp</h3>
                 <p>Nestled on the shores of Pigeon Lake, Mulhurst Camp is our home for the weekend. </p>
                 <p>We are pleased to provide all guests the complimentary option of staying at Mulhurst Camp for the weekend. There are a range of modern facilities - larger rooms with an en suite bathroom as well as single bed rooms with shared bathrooms. There is also a large campsite adjacent to the property with powered RV and tent sites which you are welcome to use. If you prefer staying off site, there are a few hotels and many rentals around Pigeon Lake.</p>
@@ -748,6 +759,19 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="accommodation-section">
+                                <p class="accommodation-note">Accommodation is covered if you'd like to stay with us at camp. You're also welcome to find your own accommodations if you prefer.</p>
+                                <label class="dietary-check accommodation-check">
+                                    <input type="radio" name="accommodation" value="camp"> Yes, I will be staying at camp
+                                </label>
+                                <label class="dietary-check accommodation-check">
+                                    <input type="radio" name="accommodation" value="own"> I will find my own accommodations
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
                     <button class="btn-fill rsvp-btn">Count me in!</button>
@@ -758,35 +782,19 @@
 </section>
 
 <section id="map">
-    <iframe id="map-canvas"
-        src="https://maps.google.com/maps?q=Mulhurst+Camp,+Pigeon+Lake,+Alberta&z=13&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div id="map-content-wrapper" class="pointer-events-none">
-        <div class="col-xs-10 col-md-4 pointer-events-auto">
-            <div class="text-center">
-                <div id="btn-show-content" class="toggle-map-content pointer-events-auto">
-                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Show info
-                </div>
-            </div>
-            <div id="map-content" class="pointer-events-auto">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5>Mulhurst Camp</h5>
-                        <p>Pigeon Lake, Alberta</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Questions?</h5>
-                        <p><i class="fa fa-envelope"></i> <a href="mailto:wedding@hannahandjai.com">wedding@hannahandjai.com</a></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-6" style="padding: 5px;">
-                        <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Show map</a>
-                    </div>
-                </div>
-            </div>
+    <div id="map-split">
+        <div id="map-canvas-wrap">
+            <iframe id="map-canvas"
+                src="https://maps.google.com/maps?q=Mulhurst+Camp,+Pigeon+Lake,+Alberta&z=13&output=embed"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div id="map-info">
+            <h5>Mulhurst Camp</h5>
+            <p>Pigeon Lake, Alberta</p>
+            <h5>Questions?</h5>
+            <p><i class="fa fa-envelope"></i>&nbsp; <a href="mailto:wedding@hannahandjai.com">wedding@hannahandjai.com</a></p>
         </div>
     </div>
 </section>

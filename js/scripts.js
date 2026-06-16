@@ -303,6 +303,11 @@ $(document).ready(function () {
         }
         formData.push({ name: 'dietary', value: dietaryChecked.join(', ') });
 
+        // Map accommodation radio to "Staying at Camp" column
+        formData = formData.filter(function(f) { return f.name !== 'accommodation'; });
+        var accommodationVal = $('input[name="accommodation"]:checked').val();
+        formData.push({ name: 'staying_at_camp', value: accommodationVal === 'camp' ? 'Yes' : (accommodationVal === 'own' ? 'No' : '') });
+
         formData.push({ name: 'wedding_party', value: isParty ? 'Yes' : 'No' });
         var data = $.param(formData);
 
